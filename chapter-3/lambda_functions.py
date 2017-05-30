@@ -1,3 +1,10 @@
+
+"""
+Created by: Noelle Milton Vega
+Organization: PRISMALYTICS, LLC (http://www.prismalytics.io)
+Last updated: 05/30/2017
+"""
+
 import boto3
 from botocore.exceptions import ClientError
 import urllib.parse, json, logging, inspect, shlex
@@ -10,13 +17,10 @@ func_name = lambda: inspect.stack()[1][3] # Used to get name of Python function 
 aws_region  = 'us-east-1'
 pipeline_id = '1494373565723-ygfqt4' # ElasticTranscoder PipelineID
 s3_resource = boto3.Session().resource('s3')
-#s3_resource = boto3.Session(profile_name='nmvega-user-root').resource('s3')
-
-
 
 
 def transcode_video_lambda(s3_event, context):
-    """ AWS Lambda function that is run when a s3 bucket,
+    """ AWS LAMBDA function that is run when a s3 bucket,
         'video-uploaded', receives a new object. (Book listing 3.1). """
     logger.info('Entered LAMBDA handler: %s()' % func_name())
     etClient = boto3.client('elastictranscoder', aws_region)
@@ -60,9 +64,10 @@ def transcode_video_lambda(s3_event, context):
 
 
 def set_s3_permissions_lambda(sns_event, context):
-    """ AWS Lambda function that is run when the SNS topic to which it is
+    """ AWS LAMBDA function that is run when the SNS topic to which it is
         subscribed, 'video-transcoded-notification', receives a message.
-        (Book listing 3.6) """
+        This sets 'public-read' ACL/permission on the transcoded video s3
+        object. (Book listing 3.6) """
     logger.info('Entered LAMBDA handler: %s()' % func_name())
     s3Client = boto3.client('s3')
    
@@ -86,9 +91,10 @@ def set_s3_permissions_lambda(sns_event, context):
 
 
 def extract_metadata_lambda(sns_event, context):
-    """ AWS Lambda function that is run when the SNS topic to which it is
-        subscribed, 'video-transcoded-notification', receives a message.
-        (Book listing 3.7) """
+    """ AWS LAMBDA function that is run when the SNS topic to which it is
+        subscribed, 'video-transcoded-notification', receives a message. This
+        extracts metadata from the just-trancoded video into a JSON file;
+        then uploads that to s3. (Book listing 3.7) """
     logger.info('Entered LAMBDA handler: %s()' % func_name())
     
     def cp_s3obj_to_localfile(s3_bucket, s3_key, localfile):
