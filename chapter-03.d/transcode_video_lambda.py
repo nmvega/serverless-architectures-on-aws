@@ -14,9 +14,11 @@ logger.setLevel(logging.INFO)
 aws_region  = 'us-east-1'
 pipeline_id = '1494373565723-ygfqt4' # ElasticTranscoder PipelineID
 
-def transcode_video_lambda(s3_event, context):
-    """ AWS LAMBDA function that is run when a s3 bucket,
-        'video-uploaded', receives a new object. (Book listing 3.1). """
+def lambda_handler(s3_event, context):
+    """ AWS LAMBDA function that is run when s3 bucket -- 'video-uploaded' -- receives a new object. The AWS
+        Lambda Handler field for this function should be set to: transcode_video.lambda.lambda_hamdler
+        (For book listing 3.1).
+    """
     logger.info('Entered LAMBDA handler: %s()' % sys._getframe().f_code.co_name)
     etClient = boto3.client('elastictranscoder', aws_region)
     

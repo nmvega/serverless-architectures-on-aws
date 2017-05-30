@@ -12,11 +12,12 @@ import subprocess, shlex
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-def extract_metadata_lambda(sns_event, context):
-    """ AWS LAMBDA function that is run when the SNS topic to which it is
-        subscribed, 'video-transcoded-notification', receives a message. This
-        extracts metadata from the just-trancoded video into a JSON file;
-        then uploads that to s3. (Book listing 3.7) """
+def lambda_handler(sns_event, context):
+    """ AWS LAMBDA function that is run when the SNS topic to which it is subscribed -- 'video-transcoded-notification' --
+        receives a message. This extracts metadata from the just-trancoded video into a JSON file; then uploads it to s3.
+        The AWS Lambda Handler field for this function should be set to: extract_metadata_lambda.lambda.lambda_hamdler
+        (For book listing 3.7).
+    """
     logger.info('Entered LAMBDA handler: %s()' % sys._getframe().f_code.co_name)
     s3_resource = boto3.Session().resource('s3')
     

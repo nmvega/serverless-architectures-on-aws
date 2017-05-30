@@ -12,11 +12,12 @@ import urllib.parse, json, logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-def set_s3_permissions_lambda(sns_event, context):
-    """ AWS LAMBDA function that is run when the SNS topic to which it is
-        subscribed, 'video-transcoded-notification', receives a message.
-        This sets 'public-read' ACL/permission on the transcoded video s3
-        object. (Book listing 3.6) """
+def lambda_handler(sns_event, context):
+    """ AWS LAMBDA function that is run when the SNS topic to which it is subscribed -- 'video-transcoded-notification' --
+        receives a message. This sets 'public-read' ACL/permission on the s3 object (a transcoded video). The AWS
+        Lambda Handler field for this function should be set to: set_s3_permissions_lambda.lambda.lambda_hamdler
+        (For book listing 3.6).
+    """
     logger.info('Entered LAMBDA handler: %s()' % sys._getframe().f_code.co_name)
     s3Client = boto3.client('s3')
    
