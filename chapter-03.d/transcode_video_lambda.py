@@ -6,7 +6,7 @@ Last updated: 05/30/2017
 
 import boto3
 from botocore.exceptions import ClientError
-import urllib.parse, logging, inspect
+import urllib.parse, logging, inspect, sys
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
