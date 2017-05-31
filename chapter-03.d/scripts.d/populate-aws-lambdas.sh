@@ -11,7 +11,7 @@
 #    collection of environment variables that immediately follow to suit your environment.
 # =============================================================================================
 AWS_OWNER_ACCOUNT_ID="Your-AWS-OWNER-ACCOUNT-ID"
-PROJECT_ROOT_DIR="/path/to/project/root/" # Set this path to the directory that you cloned this GIT repo to.
+PROJECT_ROOT_DIR="/path/to/project/root/" # Set to the *absolute* path that you cloned this GIT repo to.
 AWS_PROFILE="AWS-IAM-User-with-Lambda:UpdateFunctionCode-and-Lambda:UpdateFunctionConfiguration-permissions"
 AWS_REGION="us-east-1" # Modify to another region if you like.
 #
