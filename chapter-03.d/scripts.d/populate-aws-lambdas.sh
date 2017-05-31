@@ -48,6 +48,8 @@ aws lambda update-function-code \
 # ---------------------------------------------------------------------
 AWS_LAMBDA_NAME="extract-metadata"
 rm -f ./${ZIP_FILE_NAME}
+mkdir -p ./bin/ && wget -qO - https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-64bit-static.tar.xz | \
+	tar -C ./bin/ --strip-components=1 -xJf - '*/ffprobe'
 zip -r9 ./${ZIP_FILE_NAME} ./bin/* ./extract_metadata_lambda.py
 aws lambda update-function-code \
        --profile ${AWS_PROFILE} \
