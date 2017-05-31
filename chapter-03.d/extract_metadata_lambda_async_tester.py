@@ -22,6 +22,6 @@ logger.addHandler(child_logger)
 
 os.chdir('./chapter-03.d/')
 sns_event = json.load(open('./json.d/event.to.sns.topic.json', 'r')) # Read in SNS-topic event.
-s3_event = json.load(open('./json.d/event.s3.ObjectCreated:Put.json', 'r'))   # Read in upstream S3-event (which notifies above SNS-topic).
+s3_event = json.load(open('./json.d/event.s3.ObjectCreated:Put.json', 'r')) # Read in upstream S3-event (which notifies above SNS-topic).
 sns_event['Records'][0]['Sns']['Message'] = json.dumps(s3_event) # Embed upstream S3-event into SNS-event, as a JSON-string.
 extract_metadata_lambda.lambda_handler(sns_event, None)
