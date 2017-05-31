@@ -1,5 +1,5 @@
 # serverless-architectures-on-aws
-**python3** and **boto3** code re-implementation of select, subset of chapters and examples in the Manning book:
+**python3** and **boto3** code re-implementation of a select, subset of chapters and examples in the Manning book:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Serverless Architectures on AWS**
 
