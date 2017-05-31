@@ -1,4 +1,4 @@
-import os, sys, logging, json
+import sys, logging, json
 import extract_metadata_lambda
 
 """ An ASYNCHRONOUS/EVENT-based tester for the 'extract_metadata_lambda.lambda_handler' python3.6 handler.
@@ -8,7 +8,16 @@ import extract_metadata_lambda
     as long as the effective AWS IAM-User credentials that runs this tester has permission to interact
     with the aforementioned bucket and object (which might require adjusting AWS CRED UNIX environment variables).
 
-    It's just one educational approach to testing these Lambda Python programs manually.
+    It's a nice educational example for end-to-end testing these Lambda Python programs manually.
+
+    ==========================================================================================
+    TO RUN:
+    ==========================================================================================
+        user$ export AWS_SECRET_ACCESS_KEY=<IAM-User-with-proper-bucket-and-object-access>
+        user$ export AWS_ACCESS_KEY_ID=<IAM-User-with-proper-bucket-and-object-access>
+        user$ cd ./chapter-03.d/
+        user$ python3 ./extract_metadata_lambda_async_tester.py
+    ==========================================================================================
 """
 
 logger = logging.getLogger()
@@ -20,7 +29,6 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 child_logger.setFormatter(formatter)
 logger.addHandler(child_logger)    
 
-os.chdir('./chapter-03.d/')
 sns_event = json.load(open('./json.d/event.to.sns.topic.json', 'r')) # Read in SNS-topic event.
 s3_event = json.load(open('./json.d/event.s3.ObjectCreated:Put.json', 'r')) # Read in upstream S3-event (which notifies above SNS-topic).
 sns_event['Records'][0]['Sns']['Message'] = json.dumps(s3_event) # Embed upstream S3-event into SNS-event, as a JSON-string.
