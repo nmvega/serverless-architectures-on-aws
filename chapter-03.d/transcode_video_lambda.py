@@ -55,4 +55,4 @@ def lambda_handler(s3_event, context):
     except ClientError as e:
         logger.error("Received error: %s", e, exc_info=False) # exc_info=True will print stack-trace as well.
         logger.error("e.response['Error']['Code']: %s", e.response['Error']['Code'])
-    logger.info('Completed LAMBDA handler: %s()' % func_name())
+    logger.info('Completed LAMBDA handler: %s()' % sys._getframe().f_code.co_name)

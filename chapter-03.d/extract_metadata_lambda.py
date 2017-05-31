@@ -55,4 +55,4 @@ def lambda_handler(sns_event, context):
     
     cp_s3obj_to_localfile(s3_bucket, source_key, media_localfile) # Download the media file.
     extract_and_upload_metadata(media_localfile, s3_bucket, metadata_s3key) # Extract metadata and upload it.
-    logger.info('Completed LAMBDA handler: %s()' % func_name())
+    logger.info('Completed LAMBDA handler: %s()' % sys._getframe().f_code.co_name)
