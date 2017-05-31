@@ -7,6 +7,7 @@ import extract_metadata_lambda
     (prismalytics-video-transcoded/) and object (sintel_trailer_v16_2k_480p24-720p.mp4) are present. And,
     as long as the effective AWS IAM-User credentials that runs this tester has permission to interact
     with the aforementioned bucket and object (which might require adjusting AWS CRED UNIX environment variables).
+
     It's just one educational approach to testing these Lambda Python programs manually.
 """
 
@@ -20,7 +21,7 @@ child_logger.setFormatter(formatter)
 logger.addHandler(child_logger)    
 
 os.chdir('./chapter-03.d/')
-sns_event = json.load(open('./json.d/event.sns.json', 'r')) # Read in SNS-topic event.
-s3_event = json.load(open('./json.d/event.s3.json', 'r'))   # Read in upstream S3-event (which notifies above SNS-topic).
+sns_event = json.load(open('./json.d/event.to.sns.topic.json', 'r')) # Read in SNS-topic event.
+s3_event = json.load(open('./json.d/event.s3.ObjectCreated:Put.json', 'r'))   # Read in upstream S3-event (which notifies above SNS-topic).
 sns_event['Records'][0]['Sns']['Message'] = json.dumps(s3_event) # Embed upstream S3-event into SNS-event, as a JSON-string.
 extract_metadata_lambda.lambda_handler(sns_event, None)
