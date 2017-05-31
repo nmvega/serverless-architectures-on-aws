@@ -22,7 +22,7 @@ def lambda_handler(sns_event, context):
     s3_resource = boto3.Session().resource('s3')
     
     def cp_s3obj_to_localfile(s3_bucket, s3_key, localfile):
-        logger.info('Entered PYTHON function: %s()' % func_name())
+        logger.info('Entered PYTHON function: %s()' % sys._getframe().f_code.co_name)
         logger.info('Downloading s3 path (%s/%s) to local file (%s)' % (s3_bucket, s3_key, localfile,))
         try:
             s3_object = s3_resource.Bucket(s3_bucket).Object(s3_key)
@@ -32,7 +32,7 @@ def lambda_handler(sns_event, context):
             logger.error("e.response['Error']['Code']: %s", e.response['Error']['Code'])
 
     def extract_and_upload_metadata(localfile, s3_bucket, s3_key):
-        logger.info('Entered PYTHON function: %s()' % func_name())
+        logger.info('Entered PYTHON function: %s()' % sys._getframe().f_code.co_name) 
         logger.info('Extracting and uploading metadata from local file: %s' % (localfile,))
         try:
             cmd = shlex.split('bin/ffprobe -v quiet -print_format json -show_format ' + localfile)
