@@ -1,22 +1,24 @@
 #! /usr/bin/env bash
 #
-# =====================================================================
+# =============================================================================================
 # Created by: Noelle Milton Vega / PRISMALYTICS, LLC.
 # Description:
-#    Simple batch script to create and upload the zip-file contents
-#    for each of the three chapter-03 AWS Lambda functions. Running
-#    this assumes that those Lambda functions, named in each stanza
-#    below, have already been created on AWS. Modify the environment
-#    variables that immediately follow to suit your environment.
-# =====================================================================
-PROJECT_ROOT_DIR="/path/to/project/root/dir/"
+#    Simple batch script to create and upload the zip-file contents of each of the three
+#    chapter-03 AWS Lambda functions. Running this assumes that those AWS Lambda functions,
+#    named in each stanza below, have already been created on AWS. If they have not been
+#    created, follow the instructions of chapter-03 to do so (noting that names of some AWS
+#    Lambda functions have been _slightly_ altered from the book). Also, modify the first
+#    collection of environment variables that immediately follow to suit your environment.
+# =============================================================================================
+AWS_OWNER_ACCOUNT_ID="Your-AWS-OWNER-ACCOUNT-ID"
+PROJECT_ROOT_DIR="/path/to/project/root/" # Set this path to the directory that you cloned this GIT repo to.
 AWS_PROFILE="AWS-IAM-User-with-Lambda:UpdateFunctionCode-and-Lambda:UpdateFunctionConfiguration-permissions"
-AWS_REGION="us-east-1" # Modify if you like.
+AWS_REGION="us-east-1" # Modify to another region if you like.
+#
 AWS_LAMBDA_PYTHON_VERSION="python3.6"
-AWS_OWNER_ACCOUNT_ID="Your-AWS-ID"
 ZIP_FILE_NAME="aws.zip"
 # ---------------------------------------------------------------------
-cd ${PROJECT_ROOT_DIR}/chapter-03.d || exit 1 # Modify subdir if you like.
+cd ${PROJECT_ROOT_DIR}/chapter-03.d || exit 1
 # ---------------------------------------------------------------------
 
 # ---------------------------------------------------------------------
