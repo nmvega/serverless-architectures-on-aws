@@ -1,0 +1,31 @@
+{
+  "Records": [
+    {
+      "EventVersion": "1.0",
+      "EventSubscriptionArn": "arn:aws:sns:us-east-1:<12-digit-AWS-Account-ID>:prismalytics-video-transcoded-notification:Some-GUID",
+      "EventSource": "aws:sns",
+      "Sns": {
+        "SignatureVersion": "1",
+        "Timestamp": "1970-01-01T00:00:00.000Z",
+        "Signature": "EXAMPLE",
+        "SigningCertUrl": "EXAMPLE",
+        "MessageId": "Some-GUID",
+        "Message": "This is always a string! But it could (and likely will) be a JSON structure captured in this string. That JSON-string could, for example, represent the UPSTREAM event/notification message from the AWS service to which this SNS service is subscribed. For example, a s3 bucket object event. In Python we convert to JSON/dict() via json.loads(aStr)[0]",
+        "MessageAttributes": {
+          "Test": {
+            "Type": "String",
+            "Value": "TestString"
+          },
+          "TestBinary": {
+            "Type": "Binary",
+            "Value": "TestBinary"
+          }
+        },
+        "Type": "Notification",
+        "UnsubscribeUrl": "EXAMPLE",
+        "TopicArn": "arn:aws:sns:us-east-1:<12-digit-AWS-Accouunt-ID>:prismalytics-video-transcoded-notification",
+        "Subject": "TestInvoke"
+      }
+    }
+  ]
+}
