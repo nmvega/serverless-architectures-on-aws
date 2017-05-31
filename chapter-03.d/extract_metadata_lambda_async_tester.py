@@ -3,13 +3,14 @@ import extract_metadata_lambda
 
 """ An ASYNCHRONOUS/EVENT-based tester for the 'extract_metadata_lambda.lambda_handler' python3.6 handler.
     It employs the two JSON event files located in the ./json.d subdirectory; both of which are properly
-    configured to allow this tester to end-to-end work (i.e. hit AWS and return), as long as the named s3 bucket
-    (prismalytics-video-transcoded/) and object (sintel_trailer_v16_2k_480p24-720p.mp4) are present. And,
-    as long as the effective AWS IAM-User credentials that runs this tester has permission to interact
-    with the aforementioned bucket and object (which might require adjusting AWS CRED UNIX environment variables).
+    configured to allow this tester to end-to-end work (i.e. to connect to AWS and return); as long as the
+    s3 bucket-name, the bucket-ARN and the object-name named in the s3 event JSON file are present (which,
+    for my case, are 'prismalytics-video-transcoded/' and 'sintel_trailer_v16_2k_480p24-720p.mp4',
+    respectively; but which you can edit for your case). And, as long as the effective AWS IAM-User
+    credentials that runs this tester has permission to interact with the aforementioned s3 bucket
+    arn and object (which might require adjusting AWS CRED UNIX environment variables).
 
     It's a nice educational example for end-to-end testing these Lambda Python programs manually.
-
     ==========================================================================================
     TO RUN:
     After modifying both JSON files in ./json.d/ to suit your particular values:
