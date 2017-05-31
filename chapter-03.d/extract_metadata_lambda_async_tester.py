@@ -12,6 +12,7 @@ import extract_metadata_lambda
 
     ==========================================================================================
     TO RUN:
+    After modifying both JSON files in ./json.d/ to suit your particular values:
     ==========================================================================================
         user$ export AWS_SECRET_ACCESS_KEY=<IAM-User-with-proper-bucket-and-object-access>
         user$ export AWS_ACCESS_KEY_ID=<IAM-User-with-proper-bucket-and-object-access>
